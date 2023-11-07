@@ -14,17 +14,21 @@
 if ($_SERVER["REQUEST_METHOD"] ==="POST"){
     $email = $_POST["email"];
     $password = $_POST["password"];
+
+    
     require_once "../config/database.php";
     $res = $mysqli->query("select * from usuarios where email = '$email'");
-    if($res->num_rows === 1){
-        $userdata = $res->fetch_assoc();
+    $userdata = $res->fetch_assoc();
+    $hash = $userdata['password'];
+    if(password_verify($password, $hash)){
         session_start();
         $_SESSION["user"]=$userdata["name"];
-        $_SESSION["password"]=$userdata["password"];
+        $_SESSION["password"]=$password;
         $_SESSION["email"]=$userdata["email"];
         $_SESSION["bio"]=$userdata["bio"];
         $_SESSION["phone"]=$userdata["phone"];
         $_SESSION["id"]=$userdata["id"];
+        $_SESSION["photo"]=$userdata['img_blob'];
         header("Location: ../views/dashboard.php");
     } else{
    //     header("refresh:3;url=../index.php");

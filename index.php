@@ -20,7 +20,7 @@
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="./handle_db/login.php" method="post">
+    <form class="space-y-6" enctype="multipart/form-data" action="./handle_db/login.php" method="POST">
       <div>
         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Correo electronico</label>
         <div class="mt-2">

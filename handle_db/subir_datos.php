@@ -21,9 +21,12 @@ if ($_SERVER["REQUEST_METHOD"]==="POST"){
     $tmp_name = $_FILES["file-profile-upload"]["tmp_name"];
     $contenido = addslashes(file_get_contents($tmp_name));
 
+    //hash de la contra
+    $hash_contra = password_hash($password,PASSWORD_DEFAULT);
+
     //subiendo datos
     require_once "../config/database.php";
-    $mysqli->query("insert into usuarios(name,password, email, bio,phone, img_blob) values('$name', '$password', '$email', '$bio', '$phone','$contenido')");
+    $mysqli->query("insert into usuarios(name,password, email, bio,phone, img_blob) values('$name', '$hash_contra', '$email', '$bio', '$phone','$contenido')");
 
 echo "Datos subidos";
 echo "<main class='grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8'>";

@@ -37,7 +37,7 @@ if(!isset($_SESSION["user"])){
                             <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
                         </svg>
                         <label for="file-profile-upload" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</label>
-                        <input name="file-profile-upload" type="file" class="sr-only">
+                        <input name="file-profile-upload" id="file-profile-upload" type="file" class="sr-only">
                     </div>
                 </div>
                 <div class="sm:col-span-2">
@@ -62,6 +62,12 @@ if(!isset($_SESSION["user"])){
                     </div>
                 </div>
                 <div class="sm:col-span-2">
+                    <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Contrasena</label>
+                    <div class="mt-2.5">
+                        <input type="password" name="password" id="password" autocomplete="email" value="<?php echo $_SESSION['password'] ?>" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
                     <label for="phone-number" class="block text-sm font-semibold leading-6 text-gray-900">Numero de Telefono</label>
                     <div class="relative mt-2.5">
                         <div class="absolute inset-y-0 left-0 flex items-center">
@@ -75,6 +81,7 @@ if(!isset($_SESSION["user"])){
                         <input type="tel" name="phone-number" id="phone-number" autocomplete="tel" value="<?php echo $_SESSION['phone'] ?>" class="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
+                <input type="hidden" name="id" value="<?php echo $_SESSION['id'] ?>">
 
 
             </div>

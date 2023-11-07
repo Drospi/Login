@@ -17,13 +17,14 @@ if ($_SERVER["REQUEST_METHOD"]==="POST"){
     $name = $_POST["name"];
     $bio = $_POST["bio"];
     $phone = $_POST["phone-number"];
-    
+    $id = $_POST['id'];
     $tmp_name = $_FILES["file-profile-upload"]["tmp_name"];
     $contenido = addslashes(file_get_contents($tmp_name));
 
+    $hash_contra = password_hash($password,PASSWORD_DEFAULT);
     //subiendo datos
-    //require_once "../config/database.php";
-    //$mysqli->query("UPDATE usuarios SET name='$name', email='$email', password='$password', bio='$bio', phone='$phone' WHERE id=$idUsuario");
+    require_once "../config/database.php";
+    $mysqli->query("UPDATE usuarios SET name='$name',password='$hash_contra', email='$email', bio='$bio', phone='$phone', img_blob='$contenido'  WHERE id='$id'");
 
 echo "<main class='grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8'>";
 echo "  <div class='text-center'>";
@@ -36,7 +37,7 @@ echo "  </div>";
 echo "</main>";
 echo $_SESSION['id'];
 }
-header("refresh:5;url=../index.php");
+header("refresh:5;url=../views/dashboard.php");
 ?>
 </body>
 </html>

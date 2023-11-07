@@ -36,7 +36,16 @@ if(!isset($_SESSION["user"])){
               <span class="absolute -inset-1.5"></span>
               <span class="sr-only">Open user menu</span>
               <span><?php echo $_SESSION["user"]?></span>
-              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+              <?php
+              require_once "../config/database.php";
+              $id = $_SESSION['id'];
+              $res = $mysqli->query("select * from usuarios where id = $id");
+              $data = $res->fetch_all(MYSQLI_ASSOC);
+              foreach ($data as $usuario) {
+                $imgblob = base64_encode($usuario["img_blob"]);
+                echo "<img class='h-8 w-8 rounded-full' src='data:image/*;base64,$imgblob'/>";
+              }
+              ?>
             </button>
           </div>
           <div id="dropmenu" class="nactive-dropmenu absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -98,7 +107,7 @@ if(!isset($_SESSION["user"])){
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Contraseña</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><?php echo $_SESSION["password"]?></dd>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><?php $hash=$_SESSION['password']; $cadena = str_repeat('*', strlen($hash));echo $cadena;?></dd>
       </div>
 
     </dl>
