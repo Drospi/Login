@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] ==="POST"){
         $_SESSION["email"]=$userdata["email"];
         $_SESSION["bio"]=$userdata["bio"];
         $_SESSION["phone"]=$userdata["phone"];
+        $_SESSION["id"]=$userdata["id"];
         header("Location: ../views/dashboard.php");
     } else{
    //     header("refresh:3;url=../index.php");
@@ -42,5 +43,4 @@ echo "</main>";
 }
 ?>
 </body>
-</html>
 </html>
