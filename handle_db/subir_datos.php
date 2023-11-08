@@ -17,9 +17,12 @@ if ($_SERVER["REQUEST_METHOD"]==="POST"){
     $name = $_POST["name"];
     $bio = $_POST["bio"];
     $phone = $_POST["phone-number"];
-    
     $tmp_name = $_FILES["file-profile-upload"]["tmp_name"];
-    $contenido = addslashes(file_get_contents($tmp_name));
+    if($tmp_name==NULL){
+        $contenido=NULL;
+    }else{
+        $contenido = addslashes(file_get_contents($tmp_name));
+    }
 
     //hash de la contra
     $hash_contra = password_hash($password,PASSWORD_DEFAULT);
